@@ -13,6 +13,7 @@ module PiwikAnalytics
             var u=(("https:" == document.location.protocol) ? "https://#{Config.url}" : "http://#{Config.url}");
             _paq.push(['setSiteId', #{Config.id_site}]);
             _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setCustomData', {SiteSearch_Results: parseInt($(".studies-logo").text().match(/\d+/))}]);
             _paq.push(['trackPageView']);
             var d=document,
                 g=d.createElement('script'),
@@ -35,6 +36,7 @@ module PiwikAnalytics
         </script><script type="text/javascript">
         try {
                 var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", #{Config.id_site});
+                piwikTracker.setCustomData({SiteSearch_Results: parseInt($(".studies-logo").text().match(/\d+/))});
                 piwikTracker.trackPageView();
                 piwikTracker.enableLinkTracking();
         } catch( err ) {}
